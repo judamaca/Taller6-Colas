@@ -39,10 +39,9 @@ public class Queue implements QueueInterface{
     }
 
     // Con prioridad;
-    @Override
     public boolean insert(Object object, int priority) {
         if (object == null) return false;
-        QueueNode nuevo = new QueueNode(object);
+        QueueNode nuevo = new QueueNode(object, priority);
 
         if (head == null) {
             head = nuevo;
@@ -84,20 +83,29 @@ public class Queue implements QueueInterface{
 
         QueueNode actual = head;
         while (actual != null) {
-            if (actual.dato == null ? object == actual : actual.dato.equals(object));
-            return true;
+            if (actual.dato == null ? object == null : actual.dato.equals(object)) {
+                return true;
+            }
+            actual = actual.next;
         }
-        actual = actual.siguiente;
         return false;
     }
 
     @Override
     public String toString() {
-        return "Queue{" +
-                "head=" + head +
-                ", tail=" + tail +
-                ", size=" + size +
-                ", isPriorityQueue=" + isPriorityQueue +
-                '}';
+        if (head == null) return "Cola vacía";
+
+        StringBuilder sb = new StringBuilder("Head -> ");
+        QueueNode actual = this.head;
+        while (actual != null) {
+            if (isPriorityQueue) {
+                sb.append("[").append(actual.dato).append(" (p:").append(actual.priority).append(")] -> ");
+            } else {
+                sb.append("[").append(actual.dato).append("] -> ");
+            }
+            actual = actual.next;
+        }
+        sb.append("null");
+        return sb.toString();
     }
 }
