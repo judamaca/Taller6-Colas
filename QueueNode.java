@@ -1,6 +1,6 @@
 public class QueueNode {
 
-    private Object object;
+    private Object dato;
     int priority;
     public QueueNode next;
 }

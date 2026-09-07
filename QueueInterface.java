@@ -2,9 +2,6 @@ import java.util.Iterator;
 
 public interface QueueInterface {
 
-    /*
-    essential operations
-    */
     public void clear();
 
     public boolean isEmpty();
